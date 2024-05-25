@@ -1,1 +1,5 @@
-<p>explode-animation works!</p>
+<div class="container">
+    <button id="trigger" (click)="animateCircle()">Click Me</button>
+    <div class="circle" [ngClass]="{'expand': isAnimating}"></div>
+  </div>
+  

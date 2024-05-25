@@ -1,1 +1,44 @@
 @use '../styles.scss' as *;
+
+$animation-duration: 2s;
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+#trigger {
+  z-index: 1;
+}
+
+.circle {
+  position: absolute;
+  border: 2px solid black;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+
+  &.expand {
+    animation: expandCircle $animation-duration forwards;
+  }
+}
+
+@keyframes expandCircle {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 200vw;
+    height: 200vw;
+    opacity: 0;
+  }
+}
