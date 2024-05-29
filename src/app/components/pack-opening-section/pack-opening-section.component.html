@@ -1,4 +1,12 @@
+<button (click)="openPack()">Open Pack</button>
+<nav>
+    <button routerLink="/card-collection">Go to card collection</button>
+</nav>
+
 @if (data){
     <h2>Data from API:</h2>
-    <pre>{{data | json}}</pre>
+    @for (pokemon of data; track $index) {
+        <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
+    }
 }
+
