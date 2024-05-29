@@ -1,4 +1,5 @@
 
-@for (pokemon of savedPokemon; track $index) {
-    <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
+@for (pokemon of storedPokemon; track $index) {
+    <!-- <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card> -->
+    <p>{{pokemon.name}}</p>
 }

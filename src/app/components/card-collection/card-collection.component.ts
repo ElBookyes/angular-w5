@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Pokemon } from '../../models/pokemon.model';
 import { CardComponent } from '../card/card.component';
 
@@ -9,14 +9,22 @@ import { CardComponent } from '../card/card.component';
   templateUrl: './card-collection.component.html',
   styleUrl: './card-collection.component.scss'
 })
-export class CardCollectionComponent {
-  savedPokemon: Pokemon[] = [];
+export class CardCollectionComponent implements OnInit, OnChanges { 
+  storedPokemon: Pokemon[] = [];
 
   ngOnInit() {
     this.loadSavedPokemon();
   }
 
+  ngOnChanges() {
+    this.loadSavedPokemon();
+  }
+
   loadSavedPokemon() {
-    this.savedPokemon = JSON.parse(localStorage.getItem('savedPokemon') || '[]');
+    const data = localStorage.getItem('storedPokemon');
+    if (data) {
+      this.storedPokemon = JSON.parse(data);
+    }
+    console.log(this.storedPokemon, 'storedPokemon');
   }
 }

@@ -29,6 +29,7 @@ export class PokemonService {
       map(response => response.data),
       map(allPokemon => {
         const shuffled = allPokemon.sort(() => 0.5 - Math.random());
+        localStorage.setItem('storedPokemon', JSON.stringify(shuffled));
         return shuffled.slice(0, count);
       })
     );
