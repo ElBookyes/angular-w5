@@ -95,6 +95,11 @@ main {
   &.visible {
     display: block;
   }
+
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
 }
 
 // circle animation

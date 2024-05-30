@@ -1,11 +1,12 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Pokemon } from '../../models/pokemon.model';
 import { CardComponent } from '../card/card.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card-collection',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent, RouterLink],
   templateUrl: './card-collection.component.html',
   styleUrl: './card-collection.component.scss'
 })

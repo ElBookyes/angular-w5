@@ -1,5 +1,12 @@
-
-@for (pokemon of storedPokemon; track $index) {
-    <!-- <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card> -->
-    <p>{{pokemon.name}}</p>
-}
+<header>
+    <h1>MY COLLECTION</h1>
+    <nav>
+        <a class="nav-link" routerLink="" routerLinkActive="active">Pack Opening</a>
+        <a class="nav-link" routerLink="card-collection" routerLinkActive="active">My Collection</a>
+    </nav>
+</header>
+<main>
+    @for (pokemon of storedPokemon; track $index) {
+        <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
+    }
+</main>

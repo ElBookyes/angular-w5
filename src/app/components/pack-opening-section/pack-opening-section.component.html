@@ -19,6 +19,6 @@
             <app-loading-component class="grid-position"> </app-loading-component>
         }        
     </div>
-    <button class="reset-button" (click)="resetPack()" [ngClass]="{'visible': isPackOpened}">Open Another Pack</button>
+    <button class="reset-button" (click)="resetPack()" [ngClass]="{'visible': isPackOpened}" [disabled]="isLoading">Open Another Pack</button>
 </main>
 
