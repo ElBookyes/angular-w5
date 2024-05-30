@@ -1,0 +1,30 @@
+@use '../styles.scss' as *;
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.1rem;
+    gap: .5rem;
+
+    & button {
+        font-size: 1rem;
+        background: var(--clr-primary);
+        color: var(--clr-text);
+        border: 0;
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover,
+        &:focus {
+            background: var(--clr-accent);
+            color: var(--clr-primary);
+        }
+    }
+
+    & span {
+        font-size: 1rem;
+        color: var(--clr-primary);
+    }
+}

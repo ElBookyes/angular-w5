@@ -6,7 +6,15 @@
     </nav>
 </header>
 <main>
-    @for (pokemon of storedPokemon; track $index) {
-        <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
-    }
+    <section>
+        @for (pokemon of storedPokemon; track $index) {
+            <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
+        }
+    </section>
+    <app-pagination
+    [currentPage]="currentPage"
+    [itemsPerPage]="itemsPerPage"
+    [totalItems]="totalItems"
+    (pageChanged)="onPageChange($event)"
+    ></app-pagination>
 </main>

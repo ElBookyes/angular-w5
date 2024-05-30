@@ -1,24 +1,35 @@
 <header>
-    <h1>PACK OPENING</h1>
-    <nav>
-        <a class="nav-link" routerLink="" routerLinkActive="active">Pack Opening</a>
-        <a class="nav-link" routerLink="card-collection" routerLinkActive="active">My Collection</a>
-    </nav>
+  <h1>PACK OPENING</h1>
+  <nav>
+    <a class="nav-link" routerLink="" routerLinkActive="active">Pack Opening</a>
+    <a class="nav-link" routerLink="card-collection" routerLinkActive="active"
+      >My Collection</a
+    >
+  </nav>
 </header>
 <main class="container">
-    <div class="card-pack" (click)="togglePack(); openPack(); testFunc();" [ngClass]="{'fade-out': isPackOpened}">
+    <div
+      class="card-pack"
+      (click)="togglePack(); openPack();"
+      [ngClass]="{ 'fade-out': isPackOpened }"
+    ></div>
+    <div class="circle" [ngClass]="{ expand: isAnimating }"></div>
+    <div class="cards-container" [ngClass]="{ 'fade-in': isPackOpened }">
+      @if (data){ @for (pokemon of data; track $index) {
+      <app-card
+        [pokeName]="pokemon.name"
+        [pokeImg]="pokemon.images.small"
+      ></app-card>
+      } } @if(isLoading){
+      <app-loading-component class="grid-position"> </app-loading-component>
+      }
     </div>
-    <div class="circle" [ngClass]="{'expand': isAnimating}"></div>
-    <div class="cards-container" [ngClass]="{'fade-in': isPackOpened}">
-        @if (data){
-            @for (pokemon of data; track $index) {
-                <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
-            }
-        }
-        @if(isLoading){
-            <app-loading-component class="grid-position"> </app-loading-component>
-        }        
-    </div>
-    <button class="reset-button" (click)="resetPack()" [ngClass]="{'visible': isPackOpened}" [disabled]="isLoading">Open Another Pack</button>
+    <button
+      class="reset-button"
+      (click)="resetPack()"
+      [ngClass]="{ visible: isPackOpened }"
+      [disabled]="isLoading"
+    >
+      Open Another Pack
+    </button>
 </main>
-

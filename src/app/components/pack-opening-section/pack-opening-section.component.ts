@@ -8,11 +8,12 @@ import { CardComponent } from '../card/card.component';
 import { RouterLink } from '@angular/router';
 import { fadeInOut } from '../../animations/fadeInOut';
 import { LoadingComponentComponent } from '../loading-component/loading-component.component';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 @Component({
   selector: 'app-pack-opening-section',
   standalone: true,
-  imports: [CommonModule, FormsModule, CardComponent, LoadingComponentComponent, RouterLink],
+  imports: [CommonModule, FormsModule, CardComponent, LoadingComponentComponent, RouterLink, PaginationComponent],
   templateUrl: './pack-opening-section.component.html',
   styleUrl: './pack-opening-section.component.scss',
   providers: [HttpClientModule],
@@ -39,10 +40,6 @@ export class PackOpeningSectionComponent {
   togglePack(): void {
     this.isPackOpened = true;
     this.animateCircle();
-  }
-
-  testFunc() {
-    console.log(this.isPackOpened, 'isPackOpened');
   }
 
   animateCircle() {
