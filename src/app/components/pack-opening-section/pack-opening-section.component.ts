@@ -7,11 +7,12 @@ import { Pokemon } from '../../models/pokemon.model';
 import { CardComponent } from '../card/card.component';
 import { RouterLink } from '@angular/router';
 import { fadeInOut } from '../../animations/fadeInOut';
+import { LoadingComponentComponent } from '../loading-component/loading-component.component';
 
 @Component({
   selector: 'app-pack-opening-section',
   standalone: true,
-  imports: [CommonModule, FormsModule, CardComponent, RouterLink],
+  imports: [CommonModule, FormsModule, CardComponent, LoadingComponentComponent, RouterLink],
   templateUrl: './pack-opening-section.component.html',
   styleUrl: './pack-opening-section.component.scss',
   providers: [HttpClientModule],
@@ -23,11 +24,14 @@ export class PackOpeningSectionComponent {
   private pokemonService = inject(PokemonService);
   isAnimating = false;
   isPackOpened = false;
+  isLoading = false;
 
   openPack() {
+    this.isLoading = true;
     this.pokemonService.getRandomPokemon().subscribe((data) => {
       this.data = data;
       console.log(this.data, 'data');
+      this.isLoading = false;
     });
     localStorage.setItem('storedPokemon', JSON.stringify(this.data));
   }

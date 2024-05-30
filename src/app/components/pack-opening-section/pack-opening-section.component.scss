@@ -64,7 +64,6 @@ main {
   grid-template-columns: repeat(5, 1fr);
   padding: 1em;
   margin: 0 auto;
-  justify-items: center;
   gap: 1rem;
   opacity: 0;
   transition: opacity 0.5s;
@@ -122,6 +121,11 @@ $animation-duration: 2s;
   &.expand {
     animation: expandCircle $animation-duration forwards;
   }
+}
+
+.grid-position {
+  grid-column: 3;
+  justify-self: center;
 }
 
 @keyframes expandCircle {

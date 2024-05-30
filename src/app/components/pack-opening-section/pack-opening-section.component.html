@@ -9,11 +9,14 @@
     <div class="card-pack" (click)="togglePack(); openPack(); testFunc();" [ngClass]="{'fade-out': isPackOpened}">
     </div>
     <div class="circle" [ngClass]="{'expand': isAnimating}"></div>
-    <div class="cards-container container" [ngClass]="{'fade-in': isPackOpened}">
+    <div class="cards-container" [ngClass]="{'fade-in': isPackOpened}">
         @if (data){
             @for (pokemon of data; track $index) {
                 <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
             }
+        }
+        @if(isLoading){
+            <app-loading-component class="grid-position"> </app-loading-component>
         }        
     </div>
     <button class="reset-button" (click)="resetPack()" [ngClass]="{'visible': isPackOpened}">Open Another Pack</button>
