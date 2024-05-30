@@ -8,28 +8,28 @@
   </nav>
 </header>
 <main class="container">
-    <div
-      class="card-pack"
-      (click)="togglePack(); openPack();"
-      [ngClass]="{ 'fade-out': isPackOpened }"
-    ></div>
-    <div class="circle" [ngClass]="{ expand: isAnimating }"></div>
-    <div class="cards-container" [ngClass]="{ 'fade-in': isPackOpened }">
-      @if (data){ @for (pokemon of data; track $index) {
-      <app-card
-        [pokeName]="pokemon.name"
-        [pokeImg]="pokemon.images.small"
-      ></app-card>
-      } } @if(isLoading){
-      <app-loading-component class="grid-position"> </app-loading-component>
-      }
-    </div>
-    <button
-      class="reset-button"
-      (click)="resetPack()"
-      [ngClass]="{ visible: isPackOpened }"
-      [disabled]="isLoading"
-    >
-      Open Another Pack
-    </button>
+  <div
+    class="card-pack"
+    (click)="togglePack(); openPack()"
+    [ngClass]="{ 'fade-out': isPackOpened }"
+  ></div>
+  <div class="circle" [ngClass]="{ expand: isAnimating }"></div>
+  <div class="cards-container" [ngClass]="{ 'fade-in': isPackOpened }">
+    @if (data){ @for (pokemon of data; track $index) {
+    <app-card
+      [pokeName]="pokemon.name"
+      [pokeImg]="pokemon.images.small"
+    ></app-card>
+    } } @if(isLoading){
+    <app-loading-component class="grid-position"> </app-loading-component>
+    }
+  </div>
+  <button
+    class="reset-button"
+    (click)="resetPack()"
+    [ngClass]="{ visible: isPackOpened }"
+    [disabled]="isLoading"
+  >
+    Open Another Pack
+  </button>
 </main>

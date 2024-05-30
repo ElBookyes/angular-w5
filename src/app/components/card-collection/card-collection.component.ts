@@ -1,8 +1,9 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, inject } from '@angular/core';
 import { Pokemon } from '../../models/pokemon.model';
 import { CardComponent } from '../card/card.component';
 import { RouterLink } from '@angular/router';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { CardCollectionService } from '../../services/card-collection.service';
 
 @Component({
   selector: 'app-card-collection',
@@ -15,30 +16,54 @@ export class CardCollectionComponent implements OnInit, OnChanges {
   storedPokemon: Pokemon[] = [];
 
   // Pagination
-  paginatedNotes: Pokemon[] = [];
+  paginatedPokemon: Pokemon[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 12;
   totalItems = 0;
   totalPages: number = 0;
 
-  ngOnInit() {
+  startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  endIndex = this.startIndex + this.itemsPerPage;
+
+  private cardCollectionService = inject(CardCollectionService);
+
+  ngOnInit(): void {
     this.loadSavedPokemon();
+    this.getPaginatedPokemon();
+    this.totalItems = this.getTotalPokemon();
+    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+    console.log(this.paginatedPokemon, 'paginatedPokemon')
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.loadSavedPokemon();
+    this.getPaginatedPokemon();
+  }
+
+  getTotalPokemon(): number {
+    return this.storedPokemon.length;
   }
 
   onPageChange(page: number): void {
     this.currentPage = page;
     this.loadSavedPokemon();
+    this.getPaginatedPokemon();
   }
 
-  loadSavedPokemon() {
-    const data = localStorage.getItem('storedPokemon');
-    if (data) {
-      this.storedPokemon = JSON.parse(data);
-    }
-    console.log(this.storedPokemon, 'storedPokemon');
+  loadSavedPokemon(): void {
+    this.cardCollectionService.currentCards.subscribe((cards) => {
+      this.storedPokemon = cards;
+    });
+  }
+
+  getPaginatedPokemon(): void {
+    this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    this.endIndex = this.startIndex + this.itemsPerPage;
+    this.paginatedPokemon = this.storedPokemon.slice(this.startIndex, this.endIndex);
+  }
+
+  clearButton(): void {
+    localStorage.clear();
+    window.location.reload();
   }
 }

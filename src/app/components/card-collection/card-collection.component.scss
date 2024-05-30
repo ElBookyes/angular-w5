@@ -20,12 +20,40 @@ header {
   }
 }
 
+.pagination {
+  text-align: center;
+}
+
 section {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
-  justify-content: center;
+  gap: .5rem;
+  justify-items: center;
   height: 100%;
   width: 100%;
   padding: 2rem;
+}
+
+.collection-controls {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.clear-button {
+  font-size: 1rem;
+  background: var(--alert);
+  color: var(--clr-text);
+  border: 0;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover,
+  &:focus {
+      background: var(--clr-text);
+      color: var(--alert);
+  }
 }

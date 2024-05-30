@@ -9,6 +9,4 @@ import { Component } from '@angular/core';
   `,
   styleUrl: './loading-component.component.scss'
 })
-export class LoadingComponentComponent {
-
-}
+export class LoadingComponentComponent {}

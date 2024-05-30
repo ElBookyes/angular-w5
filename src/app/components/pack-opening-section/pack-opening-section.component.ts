@@ -1,5 +1,6 @@
-import { Component, OnChanges, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.api';
+import { CardCollectionService } from '../../services/card-collection.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,19 +23,20 @@ import { PaginationComponent } from '../pagination/pagination.component';
 export class PackOpeningSectionComponent {
   data: Pokemon[] = [];
   storedPokemon: Pokemon[] = [];
-  private pokemonService = inject(PokemonService);
   isAnimating = false;
   isPackOpened = false;
   isLoading = false;
+
+  private pokemonService = inject(PokemonService);
+  private cardCollectionService = inject(CardCollectionService);
 
   openPack() {
     this.isLoading = true;
     this.pokemonService.getRandomPokemon().subscribe((data) => {
       this.data = data;
-      console.log(this.data, 'data');
+      this.cardCollectionService.updateCards(data);
       this.isLoading = false;
     });
-    localStorage.setItem('storedPokemon', JSON.stringify(this.data));
   }
 
   togglePack(): void {

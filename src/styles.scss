@@ -108,6 +108,14 @@ svg {
   }
 }
 
+.container {
+  --max-width: 1900px;
+  --container-padding: 1rem;
+
+  width: min(var(--max-width), 100% - (var(--container-padding) * 2));
+  margin-inline: auto;
+}
+
 $breakpoints: (
   small: 40em,
   medium: 60em,

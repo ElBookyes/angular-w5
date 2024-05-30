@@ -5,16 +5,19 @@
         <a class="nav-link" routerLink="card-collection" routerLinkActive="active">My Collection</a>
     </nav>
 </header>
-<main>
-    <section>
-        @for (pokemon of storedPokemon; track $index) {
-            <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
-        }
-    </section>
-    <app-pagination
+<div class="collection-controls">
+    <app-pagination class="pagination"
     [currentPage]="currentPage"
     [itemsPerPage]="itemsPerPage"
     [totalItems]="totalItems"
     (pageChanged)="onPageChange($event)"
     ></app-pagination>
+    <button class="clear-button" (click)="clearButton();" >Clear Collection</button>
+</div>
+<main>
+    <section>
+        @for (pokemon of paginatedPokemon; track $index) {
+            <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
+        }
+    </section>
 </main>
