@@ -1,0 +1,144 @@
+@use "../styles.scss" as *;
+
+header {
+  text-align: center;
+  & h1 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  & .nav-link {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-primary);
+    text-decoration: none;
+    margin: 0 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--clr-secondary);
+    }
+  }
+}
+
+main {
+  display: grid;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+}
+
+.container {
+  --max-width: 1110px;
+  --container-padding: 1rem;
+
+  width: min(var(--max-width), 100% - (var(--container-padding) * 2));
+  margin-inline: auto;
+}
+
+.card-pack {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  width: 400px;
+  height: 80%;
+  border: 0.125em solid var(--clr-primary);
+  background: url("/assets/pokemon-card-pack.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0 0 5em 0 var(--clr-primary), 0 0 5em 0 var(--clr-primary);
+  }
+  &.fade-out {
+    animation: fadeOut 0.5s forwards;
+  }
+}
+
+.cards-container {
+  display: none;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 1em;
+  margin: 0 auto;
+  justify-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  &.fade-in {
+    display: grid;
+    opacity: 1;
+  }
+}
+
+.reset-button {
+  display: none;
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  background-color: var(--clr-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--clr-secondary);
+  }
+
+  &.visible {
+    display: block;
+  }
+}
+
+// circle animation
+
+$animation-duration: 2s;
+
+#trigger {
+  z-index: 1;
+}
+
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+
+  &.expand {
+    animation: expandCircle $animation-duration forwards;
+  }
+}
+
+@keyframes expandCircle {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 200vw;
+    height: 200vw;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+}

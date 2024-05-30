@@ -1,12 +1,21 @@
-<button (click)="openPack()">Open Pack</button>
-<nav>
-    <button routerLink="/card-collection">Go to card collection</button>
-</nav>
-
-@if (data){
-    <h2>Data from API:</h2>
-    @for (pokemon of data; track $index) {
-        <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
-    }
-}
+<header>
+    <h1>PACK OPENING</h1>
+    <nav>
+        <a class="nav-link" routerLink="" routerLinkActive="active">Pack Opening</a>
+        <a class="nav-link" routerLink="card-collection" routerLinkActive="active">My Collection</a>
+    </nav>
+</header>
+<main class="container">
+    <div class="card-pack" (click)="togglePack(); openPack(); testFunc();" [ngClass]="{'fade-out': isPackOpened}">
+    </div>
+    <div class="circle" [ngClass]="{'expand': isAnimating}"></div>
+    <div class="cards-container container" [ngClass]="{'fade-in': isPackOpened}">
+        @if (data){
+            @for (pokemon of data; track $index) {
+                <app-card [pokeName]="pokemon.name" [pokeImg]="pokemon.images.small"></app-card>
+            }
+        }        
+    </div>
+    <button class="reset-button" (click)="resetPack()" [ngClass]="{'visible': isPackOpened}">Open Another Pack</button>
+</main>
 
