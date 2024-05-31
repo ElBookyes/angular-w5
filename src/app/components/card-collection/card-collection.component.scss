@@ -44,7 +44,7 @@ section {
 
 .clear-button {
   font-size: 1rem;
-  background: var(--alert);
+  background: var(--clr-accent);
   color: var(--clr-text);
   border: 0;
   border-radius: 5px;
@@ -54,6 +54,6 @@ section {
   &:hover,
   &:focus {
       background: var(--clr-text);
-      color: var(--alert);
+      color: var(--clr-accent);
   }
 }

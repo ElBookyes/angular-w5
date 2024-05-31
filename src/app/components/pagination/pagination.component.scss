@@ -18,7 +18,7 @@
         transition: all 0.3s ease;
         &:hover,
         &:focus {
-            background: var(--clr-accent);
+            background: var(--clr-text);
             color: var(--clr-primary);
         }
     }
