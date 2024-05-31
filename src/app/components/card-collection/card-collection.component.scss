@@ -24,6 +24,12 @@ header {
   text-align: center;
 }
 
+main {
+  height: 100%;
+  padding: 1em;
+  margin: 1em;
+}
+
 section {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.api';
 import { CardCollectionService } from '../../services/card-collection.service';
 import { CommonModule } from '@angular/common';
@@ -20,7 +20,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
   providers: [HttpClientModule],
   animations: [fadeInOut],
 })
-export class PackOpeningSectionComponent {
+export class PackOpeningSectionComponent implements OnInit, OnDestroy {
   data: Pokemon[] = [];
   storedPokemon: Pokemon[] = [];
   isAnimating = false;
@@ -29,6 +29,14 @@ export class PackOpeningSectionComponent {
 
   private pokemonService = inject(PokemonService);
   private cardCollectionService = inject(CardCollectionService);
+
+  ngOnInit(): void {
+    document.body.classList.add('body-overflow-hidden')
+  }
+
+  ngOnDestroy(): void {
+    document.body.classList.remove('body-overflow-hidden')
+  }
 
   openPack() {
     this.isLoading = true;

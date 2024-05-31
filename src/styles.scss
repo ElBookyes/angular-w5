@@ -64,7 +64,6 @@ html:focus-within {
 html,
 body {
   height: 100%;
-  overflow: hidden;
   scroll-behavior: smooth;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -113,6 +112,14 @@ svg {
 
   width: min(var(--max-width), 100% - (var(--container-padding) * 2));
   margin-inline: auto;
+}
+
+.body-overflow-hidden {
+  overflow: hidden;
+}
+
+.body-overflow-visible {
+  overflow: visible;
 }
 
 $breakpoints: (

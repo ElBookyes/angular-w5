@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, inject } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { Pokemon } from '../../models/pokemon.model';
 import { CardComponent } from '../card/card.component';
 import { RouterLink } from '@angular/router';
@@ -12,7 +12,7 @@ import { CardCollectionService } from '../../services/card-collection.service';
   templateUrl: './card-collection.component.html',
   styleUrl: './card-collection.component.scss'
 })
-export class CardCollectionComponent implements OnInit, OnChanges { 
+export class CardCollectionComponent implements OnInit, OnDestroy { 
   storedPokemon: Pokemon[] = [];
 
   // Pagination
@@ -28,6 +28,7 @@ export class CardCollectionComponent implements OnInit, OnChanges {
   private cardCollectionService = inject(CardCollectionService);
 
   ngOnInit(): void {
+    document.body.classList.add('body-overflow-visible');
     this.loadSavedPokemon();
     this.getPaginatedPokemon();
     this.totalItems = this.getTotalPokemon();
@@ -35,9 +36,8 @@ export class CardCollectionComponent implements OnInit, OnChanges {
     console.log(this.paginatedPokemon, 'paginatedPokemon')
   }
 
-  ngOnChanges(): void {
-    this.loadSavedPokemon();
-    this.getPaginatedPokemon();
+  ngOnDestroy(): void {
+    document.body.classList.remove('body-overflow-visible');
   }
 
   getTotalPokemon(): number {
